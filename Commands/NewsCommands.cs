@@ -16,10 +16,9 @@ namespace NomiBotDS.Modules
 {
     public class NewsCommands : ModuleBase<SocketCommandContext>
     {
-
+        tokenGeneration tokens = new tokenGeneration();
 
         [Command("announce")]
-
         public async Task Announce(string message, ulong id)
         {
             var client = Context.Client;
@@ -29,10 +28,7 @@ namespace NomiBotDS.Modules
             await channel.SendMessageAsync(message);
         }
 
-        tokenGeneration tokens = new tokenGeneration();
-
         [Command("news")]
-
         public async Task News(ulong id, long dbid)
         {
             var Message = await Context.Channel.SendMessageAsync("```diff\n" + "- Проверяю введенные данные!\nПожалуйста подождите....\n" + "```");
@@ -41,7 +37,6 @@ namespace NomiBotDS.Modules
             if (user.Roles.Contains(role))
             {
                 string token = tokens.readToken();
-                string channelMessage = String.Empty;
                 try
                 {
                     HttpClient client = new HttpClient();
@@ -50,8 +45,6 @@ namespace NomiBotDS.Modules
                     string responseBody = await response.Content.ReadAsStringAsync();
                     dynamic stuff = JsonConvert.DeserializeObject(responseBody);
                     string chMessage = stuff.info;
-                    string result = chMessage.Replace(@"\n", "\n");
-                    channelMessage = result;
                     var dsclient = Context.Client;
                     ulong channelID = id;
 
@@ -59,7 +52,7 @@ namespace NomiBotDS.Modules
                     await Message.ModifyAsync(msg => msg.Content = "```diff\n" + "- Отправляю сообщение в указанный канал!\n" + "```");
                     if (channel != null)
                     {
-                        await channel.SendMessageAsync(channelMessage);
+                        await channel.SendMessageAsync(chMessage);
                     }
                     else
                     {

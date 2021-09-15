@@ -14,6 +14,7 @@ using System.IO;
 using System.Net;
 using NomiBotDS.Conn;
 using System.Configuration;
+using NomiBotDS.Modules;
 
 namespace NomiBotDS
 {
@@ -65,7 +66,7 @@ namespace NomiBotDS
         private static IServiceProvider ConfigureServices()
         {
             var map = new ServiceCollection()
-                .AddSingleton(new InfoModule());
+                .AddSingleton(new InfoCommands());
 
             return map.BuildServiceProvider();
         }

@@ -175,12 +175,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conn\tokenGeneration.cs" />
+    <Compile Include="Connection\tokenGeneration.cs" />
     <Compile Include="Models\Data.cs" />
-    <Compile Include="Modules\Commands.cs" />
-    <Compile Include="Modules\GameCommands.cs" />
-    <Compile Include="Modules\InfoCommands.cs" />
-    <Compile Include="Modules\NewsCommands.cs" />
+    <Compile Include="Commands\GameCommands.cs" />
+    <Compile Include="Commands\InfoCommands.cs" />
+    <Compile Include="Commands\NewsCommands.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -191,7 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="15826230201556105702-20.ico" />
-    <Content Include="config.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
